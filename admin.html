@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Admin Dashboard</h1>
+<div id="out"></div>
+
+<script>
+async function load() {
+  const r = await fetch("/api/teams");
+  const d = await r.json();
+
+  document.getElementById("out").innerHTML =
+    d.value.map(x =>
+      x.fields.Title + " (" + x.fields.Gesamtwürfe + ")"
+    ).join("<br>");
+}
+
+setInterval(load, 3000);
+</script>
+
+</body>
+</html>
